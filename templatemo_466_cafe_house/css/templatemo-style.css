@@ -156,6 +156,7 @@ ul {
 }
 * { font-family: 'Open Sans', sans-serif; }
 .container { max-width: 960px; }
+.container-principal { max-width: 310px; }
 .tm-handwriting-font { font-family: 'Damion', cursive; }
 .tm-top-header {
   background: black;
@@ -234,17 +235,42 @@ ul {
 .green-text { color: #30A430; }
 .tm-welcome-header { font-size: 56px; }
 .tm-welcome-header-2 {
+  margin-top:  80px;
   font-family: 'Times New Roman', serif;
-  font-size: 62px;
+  font-size: 40px;
   text-transform: uppercase;
 }
 .tm-welcome-content {
-  margin: 150px auto 350px;
-  max-width: 650px;
+  margin:  70px 10px 70px;
+  max-width: 300px;
+  border: 2px solid white;
+  border-top-left-radius: 30px; 
+  border-bottom-right-radius: 30px;
 }
 .tm-welcome-description { text-align: justify; }
 .tm-welcome-img-container { text-align: right; }
-.tm-more-button-welcome { margin: 40px auto; }
+.tm-more-button-welcome-2 { margin: 40px auto; }
+.tm-more-button-welcome { margin: 40px auto 80px; }
+.add{ margin: 80px auto 40px; }
+.menu{
+  margin-top: 50px;
+  display:grid;
+  grid-template-columns: 240px 240px 240px;
+}
+.producto{
+  margin: 10px 10px;
+  border-top-left-radius:10px;
+  border-bottom-right-radius:10px;
+  background: white;
+  width: 200px;
+  height: 250px;
+}
+.producto img{
+  width:  180px;
+  height: 180px;
+  margin: 20px 10px;
+  border-radius: 10px;
+}
 .tm-more-button {  
   display: -webkit-box;  
   display: -webkit-flex;  
@@ -271,6 +297,10 @@ ul {
 .tm-more-button:focus {
   color: white;
   text-decoration: none;
+}
+.columnas{
+  display: grid;
+ grid-template-columns: 310px 730px 310px;
 }
 .tm-position-relative { position: relative; }
 .tm-table-set {
