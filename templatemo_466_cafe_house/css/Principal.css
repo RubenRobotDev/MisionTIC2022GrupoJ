@@ -13,6 +13,9 @@ COLOR CODES
 /** Preloader 
 * https://ihatetomatoes.net/create-custom-preloading-screen/
 */
+label{
+  color: white;
+}
 #loader-wrapper {
     position: fixed;
     top: 0;
