@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cafe House Template</title>
+<!-- 
+Cafe House Template
+http://www.templatemo.com/tm-466-cafe-house
+-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <!--  <link href="css/templatemo-style.css" rel="stylesheet">-->
+  <link href="css/Principal.css" rel="stylesheet">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+    </div>
+    <!-- End Preloader -->
+
+
+    <div class="tm-top-header">
+        <div class="container">
+            <div class="row">
+                <div class="tm-top-header-inner">
+                    <div class="tm-logo-container">
+                        <img src="img/logo.png" alt="Logo" class="tm-site-logo">
+                        <h1 class="tm-site-name tm-handwriting-font">Cafe House</h1>
+                    </div>
+                    <div class="mobile-menu-icon">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <nav class="tm-nav">
+                      <ul>
+                        <li><a href="Principal.html" class="active">Edicion de productos</a></li>
+                        <li><a href="Principal.html">Edicion de usuarios</a></li>
+                      </ul>
+                    </nav>   
+                  </div>           
+              </div>    
+          </div>
+    </div>
+
+    <section class="tm-welcome-section">
+      <div class="columnas">
+        <div class="container container-principal">
+            <div class="row tm-welcome-content">
+              <h2 class="gold-text tm-welcome-header-2">Busqueda de productos</h2>
+	            <input type="text">
+              <a href="#main" class="tm-more-button tm-more-button-welcome">Search</a>      
+            </div>
+        </div>      
+        <div class="container">
+	          <div class="menu">
+	            <div class="producto">
+	              <img src="img/cafe.jpg" alt="cafe">
+	              <p>Cantidad: </p>
+	              <p id="cantidad"></p>
+	            </div>
+	          </div>
+        </div>
+        <div class="container container-principal">
+          <div class="row tm-welcome-content">
+	            <input type="text" value="cantidad" class="add">	    
+              <a href="#main" class="tm-more-button tm-more-button-welcome-2">Update</a>      
+	            <a href="#main" class="tm-more-button tm-more-button-welcome">Delete</a>      
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container" id="main">
+      <section class="tm-section row">
+        <h2 class="col-lg-12 margin-bottom-30">Edición de Producto: ######</h2>
+        <form action="#" method="post" class="tm-contact-form">
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <input type="text" id="nombreProducto" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="form-group">
+              <input type="number" id="cantidadProducto" class="form-control" placeholder="Cantidad">
+            </div>
+            <div class="form-group">
+              <input type="file" id="imagenProducto" class="form-control" placeholder="Imagen" size="50">
+            </div>
+            
+              <div class="btn-group" role="group" aria-label="Basic example" alignment="center">
+                <button class="btn btn-secondary" type="submit" name="submit">Crear Producto</button>
+                <button class="btn btn-secondary" type="submit" name="submit">Actualizar Producto</button> 
+              </div>
+
+           
+          </div>
+        </form>
+      </section>
+</div>
+
+
+
+
+
+
+
+    <!-- JS -->
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
+    <script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->
+
+ </body>
+ </html>
