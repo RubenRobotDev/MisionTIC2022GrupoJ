@@ -570,6 +570,9 @@ ol li:before {
 .tm-daily-menu-container { overflow: hidden; }
 
 /* Menu */
+.user{
+  opacity: 0;
+}
 .tm-side-menu {
   color: white;
   width: 242px;
