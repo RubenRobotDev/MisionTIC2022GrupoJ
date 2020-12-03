@@ -244,16 +244,14 @@ ul {
   text-transform: uppercase;
 }
 .tm-welcome-content {
-  margin:  70px 10px 70px;
-  max-width: 300px;
-  border: 2px solid white;
-  border-top-left-radius: 30px; 
-  border-bottom-right-radius: 30px;
+  margin:  150px 10px 150px;
+  max-width: 500px;
 }
 .tm-welcome-description { text-align: justify; }
 .tm-welcome-img-container { text-align: right; }
 .tm-more-button-welcome-2 { margin: 40px auto; }
-.tm-more-button-welcome { margin: 40px auto 80px; }
+.tm-more-button-welcome { margin: 20px auto 10px; }
+
 .add{ margin: 80px auto 40px; }
 .menu{
   margin-top: 50px;
@@ -296,6 +294,14 @@ ul {
   -webkit-transition: all 0.3s ease;
           transition: all 0.3s ease;
 }
+.row   i{
+  font-size: 12em;
+  color: #c79c60;
+  transition: .3s;
+}
+.row:hover a, .row:hover a i{
+  color: white;
+}
 .tm-more-button:hover,
 .tm-more-button:focus {
   color: white;
@@ -303,7 +309,7 @@ ul {
 }
 .columnas{
   display: grid;
- grid-template-columns: 310px 730px 310px;
+  grid-template-columns: 450px 450px 450px;
 }
 .tm-position-relative { position: relative; }
 .tm-table-set {
