@@ -311,6 +311,10 @@ ul {
   display: grid;
   grid-template-columns: 450px 450px 450px;
 }
+.columnas-2{
+  display: grid;
+  grid-template-columns: 675px 675px;
+}
 .tm-position-relative { position: relative; }
 .tm-table-set {
   position: absolute;
