@@ -256,7 +256,7 @@ ul {
 .menu{
   margin-top: 50px;
   display:grid;
-  grid-template-columns: 240px 240px 240px;
+  grid-template-columns: 240px 240px 240px 240px;
 }
 .producto{
   margin: 10px 10px;
@@ -314,6 +314,10 @@ ul {
 .columnas-2{
   display: grid;
   grid-template-columns: 675px 675px;
+}
+.columnas-3{
+  display: grid;
+ grid-template-columns: 310px 1040px;
 }
 .tm-position-relative { position: relative; }
 .tm-table-set {
