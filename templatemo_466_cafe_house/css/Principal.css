@@ -13,6 +13,9 @@ COLOR CODES
 /** Preloader 
 * https://ihatetomatoes.net/create-custom-preloading-screen/
 */
+label{
+  color: white;
+}
 #loader-wrapper {
     position: fixed;
     top: 0;
@@ -241,21 +244,19 @@ ul {
   text-transform: uppercase;
 }
 .tm-welcome-content {
-  margin:  70px 10px 70px;
-  max-width: 300px;
-  border: 2px solid white;
-  border-top-left-radius: 30px; 
-  border-bottom-right-radius: 30px;
+  margin:  150px 10px 150px;
+  max-width: 500px;
 }
 .tm-welcome-description { text-align: justify; }
 .tm-welcome-img-container { text-align: right; }
 .tm-more-button-welcome-2 { margin: 40px auto; }
-.tm-more-button-welcome { margin: 40px auto 80px; }
+.tm-more-button-welcome { margin: 20px auto 10px; }
+
 .add{ margin: 80px auto 40px; }
 .menu{
   margin-top: 50px;
   display:grid;
-  grid-template-columns: 240px 240px 240px;
+  grid-template-columns: 240px 240px 240px 240px;
 }
 .producto{
   margin: 10px 10px;
@@ -293,6 +294,14 @@ ul {
   -webkit-transition: all 0.3s ease;
           transition: all 0.3s ease;
 }
+.row   i{
+  font-size: 12em;
+  color: #c79c60;
+  transition: .3s;
+}
+.row:hover a, .row:hover a i{
+  color: white;
+}
 .tm-more-button:hover,
 .tm-more-button:focus {
   color: white;
@@ -300,7 +309,15 @@ ul {
 }
 .columnas{
   display: grid;
- grid-template-columns: 310px 730px 310px;
+  grid-template-columns: 450px 450px 450px;
+}
+.columnas-2{
+  display: grid;
+  grid-template-columns: 675px 675px;
+}
+.columnas-3{
+  display: grid;
+ grid-template-columns: 310px 1040px;
 }
 .tm-position-relative { position: relative; }
 .tm-table-set {
@@ -561,6 +578,9 @@ ol li:before {
 .tm-daily-menu-container { overflow: hidden; }
 
 /* Menu */
+.user{
+  opacity: 0;
+}
 .tm-side-menu {
   color: white;
   width: 242px;
@@ -793,3 +813,33 @@ button.tm-more-button {
 @media screen and (max-width: 370px) {
   .tm-welcome-content { margin-bottom: 60px; }
 }
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    max-width: 1000px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #c79c60;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 70px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #c79c60;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f3f3f355;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
