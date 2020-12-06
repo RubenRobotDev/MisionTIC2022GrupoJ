@@ -1,4 +1,7 @@
 templatemo_466_cafe_house/env/
 *.txt
 *.bash
-*.bs
+*.sh
+*index.html
+*index.css
+
