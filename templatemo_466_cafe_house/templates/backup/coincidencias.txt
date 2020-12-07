@@ -1,0 +1,54 @@
+HomeAdmin.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css)}} ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+HomeUser.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+ManageUser.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+NewProduct.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+NewUser.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+RecoverPassword.html
+{{ url_for('static', filename= css/Principal.css ) }}
+SearchProduct.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+SearchUser.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+UpdateProduct.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+UpdateProductUser.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+UpdateUser.html
+{{ url_for('static', filename= css/bootstrap.min.css ) }}
+{{ url_for('static', filename= css/font-awesome.min.css ) }}
+{{ url_for('static', filename= css/templatemo-style.css ) }}
+{{ url_for('static', filename= css/Principal.css ) }}
+login.html
+{{ url_for('static', filename= css/Principal.css ) }}

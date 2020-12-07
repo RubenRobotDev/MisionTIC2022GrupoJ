@@ -11,11 +11,11 @@ http://www.templatemo.com/tm-466-cafe-house
 -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/css/font-awesome.min.css" rel="stylesheet">
   <!--  <link href="css/templatemo-style.css" rel="stylesheet">-->
-  <link href="css/Principal.css" rel="stylesheet">
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+  <link href="static/css/Principal.css" rel="stylesheet">
+  <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,7 +39,7 @@ http://www.templatemo.com/tm-466-cafe-house
         <div class="row">
           <div class="tm-top-header-inner">
             <div class="tm-logo-container">
-              <img src="img/logo.png" alt="Logo" class="tm-site-logo">
+              <img src="static/img/logo.png" alt="Logo" class="tm-site-logo">
               <h1 class="tm-site-name tm-handwriting-font">Cafe House</h1>
             </div>
             <div class="mobile-menu-icon">
@@ -57,30 +57,39 @@ http://www.templatemo.com/tm-466-cafe-house
     </div>
     <section class="tm-welcome-section">
       <div class="columnas">
-	
-        <div class="container container-principal">
+        <div class="container container-principal user">
           <div class="row tm-welcome-content">
 	    <a href="#main"><i class="material-icons">add</i></a>
             <a href="#main" class="tm-more-button tm-more-button-welcome">New Product</a>      
           </div>
         </div>      
         <div class="container container-principal">
-	  <div class="row tm-welcome-content">
-	    <a href="#main"><i class="material-icons">search</i></a>
-            <a href="#main" class="tm-more-button tm-more-button-welcome">Search Product</a>      
+	  <div class="row tm-welcome-content" style="margin-top: 50px;">
+	    <h2 class="gold-text tm-welcome-header-2" style="margin-top: 0px;">Update User</h2>
+	    <p style="color: white;">Name:</p>
+	    <input>
+	    <p style="color: white;">User:</p>
+	    <input>
+	    <p style="color: white;">Password:</p>
+	    <input>
+	    <p style="color: white;">Mail:</p>
+	    <input>
+            <a href="#main" class="tm-more-button tm-more-button-welcome">Update User</a>      
+            <a href="#main" class="tm-more-button tm-more-button-welcome">Delete User</a>      
           </div>
         </div>
-        <div class="container container-principal">
+        <div class="container container-principal user">
           <div class="row tm-welcome-content">
 	    <a href="#main"><i class="material-icons">settings</i></a>
 	    <a href="#main" class="tm-more-button tm-more-button-welcome"> Manage user</a>      
           </div>
         </div>      
+
       </div>
     </section>
     <!-- JS -->
-    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
-    <script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->
+    <script type="text/javascript" src="static/js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
+    <script type="text/javascript" src="static/js/templatemo-script.js"></script>      <!-- Templatemo Script -->
 
  </body>
  </html>
