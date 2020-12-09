@@ -13,9 +13,6 @@ def hello():
 def RecoverPassword():
     return render_template("RecoverPassword.html")
 
-
-
-
 @app.route("/HomeAdmin")
 def HomeAdmin():
     return render_template("HomeAdmin.html")
@@ -55,6 +52,9 @@ def UpdateProductUser():
 def SearchProduct():
     return render_template("SearchProduct.html")
 
+@app.route("/UpdateUser")
+def UpdateUser():
+    return render_template("UpdateUser.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
