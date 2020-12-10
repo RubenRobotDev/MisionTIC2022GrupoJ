@@ -31,10 +31,7 @@ def NewUser():
 
 @app.route("/SearchUser")
 def SearchUser():
-    return render_template("SearchUser.html")
-
-
-   
+    return render_template("SearchUser.html")   
 
 @app.route("/NewProduct")  
 def NewProduct():
