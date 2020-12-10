@@ -1,5 +1,5 @@
 from flask import Flask as fl
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 import os
 
 
@@ -8,54 +8,99 @@ app = fl(__name__)
 @app.route("/",methods=["GET","POST"])
 def hello():
     if request.method == "POST":
-        user = request.form["name"]
-        print(user)
+        user = request.form["user"]
+        password = request.form["pass"]
+        return redirect(url_for("HomeAdmin"))
     else:
         return render_template("login.html")
 
-@app.route("/RecoverPassword")
+@app.route("/RecoverPassword",methods=["GET","POST"])
 def RecoverPassword():
-    return render_template("RecoverPassword.html")
+    if request.method == "POST":
+        mail = request.form[mail]
+        return render_template(url_for("hello"))
+    else:    
+        return render_template("RecoverPassword.html")
 
-@app.route("/HomeAdmin")
+@app.route("/HomeAdmin",methods=["GET","POST"])
 def HomeAdmin():
-    return render_template("HomeAdmin.html")
+    if request.method == "POST":
+        return render_template("HomeAdmin.html")
+    else:    
+        return render_template("HomeAdmin.html")
 
-@app.route("/HomeUser")
+@app.route("/HomeUser",methods=["GET","POST"])
 def HomeUser():
-    return render_template("HomeUser.html")
+    if request.method == "POST":
+        return render_template("HomeUser.html")
+    else:   
+        return render_template("HomeUser.html")
 
-@app.route("/ManageUser")
+@app.route("/ManageUser",methods=["GET","POST"])
 def ManageUser():
-    return render_template("ManageUser.html")
+    if request.method == "POST":
+        return render_template("ManageUser.html")
+    else:    
+        return render_template("ManageUser.html")
 
-@app.route("/NewUser")
+@app.route("/NewUser",methods=["GET","POST"])
 def NewUser():
-    return render_template("NewUser.html")
+    if request.method == "POST":
+        newUserName = request.form[NewUserName]
+        newUserUser = request.form[NewUserUser]
+        newUserPassword = request.form[NewUserPassword]
+        newUserMail = request.form[NewUserMail]
+    else:    
+        return render_template("NewUser.html")
 
-@app.route("/SearchUser")
+@app.route("/SearchUser",methods=["GET","POST"])
 def SearchUser():
-    return render_template("SearchUser.html")   
+    if request.method == "POST":
+        searchUser = request.form[search]
+    else:    
+        return render_template("SearchUser.html")   
 
-@app.route("/NewProduct")  
+@app.route("/NewProduct",methods=["GET","POST"])  
 def NewProduct():
-    return render_template("NewProduct.html")
+    if request.method == "POST":
+        NewProductName = request.form[NewProductName]
+        NewQuantity = request.form[NewQuantity]
+        NewImage = request.form[NewImage]
+    else:    
+        return render_template("NewProduct.html")
 
-@app.route("/UpdateProduct")
+@app.route("/UpdateProduct",methods=["GET","POST"])
 def UpdateProduct():
-    return render_template("UpdateProduct.html")
+    if request.method == "POST":
+        UpdateProductName = request.form[NewProductName]
+        UpdateQuantity = request.form[NewQuantity]
+        UpdateImage = request.form[NewImage]
+    else:    
+        return render_template("UpdateProduct.html")
 
-@app.route("/UpdateProductUser")
+@app.route("/UpdateProductUser",methods=["GET","POST"])
 def UpdateProductUser():
-    return render_template("UpdateProductUser.html") 
+    if request.method == "POST":
+        UpdateQuantity = request.form[NewQuantity]
+    else:    
+        return render_template("UpdateProductUser.html") 
 
-@app.route("/SearchProduct")
+@app.route("/SearchProduct",methods=["GET","POST"])
 def SearchProduct():
-    return render_template("SearchProduct.html")
+    if request.method == "POST":
+        searchUser = request.form[search]
+    else:    
+        return render_template("SearchProduct.html")
 
-@app.route("/UpdateUser")
+@app.route("/UpdateUser",methods=["GET","POST"])
 def UpdateUser():
-    return render_template("UpdateUser.html")
+    if request.method == "POST":
+        updateUserName = request.form[NewUserName]
+        updateUserUser = request.form[NewUserUser]
+        updateUserPassword = request.form[NewUserPassword]
+        updateUserMail = request.form[NewUserMail]
+    else:    
+        return render_template("UpdateUser.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
