@@ -17,8 +17,8 @@ def hello():
 @app.route("/RecoverPassword",methods=["GET","POST"])
 def RecoverPassword():
     if request.method == "POST":
-        mail = request.form[mail]
-        return render_template(url_for("hello"))
+        mail = request.form["email"]
+        return redirect(url_for("hello"))
     else:    
         return render_template("RecoverPassword.html")
 
@@ -46,59 +46,62 @@ def ManageUser():
 @app.route("/NewUser",methods=["GET","POST"])
 def NewUser():
     if request.method == "POST":
-        newUserName = request.form[NewUserName]
-        newUserUser = request.form[NewUserUser]
-        newUserPassword = request.form[NewUserPassword]
-        newUserMail = request.form[NewUserMail]
+        newUserName = request.form["NewUserName"]
+        newUserUser = request.form["NewUserUser"]
+        newUserPassword = request.form["NewUserPassword"]
+        newUserMail = request.form["NewUserMail"]
     else:    
         return render_template("NewUser.html")
 
 @app.route("/SearchUser",methods=["GET","POST"])
 def SearchUser():
     if request.method == "POST":
-        searchUser = request.form[search]
+        searchUser = request.form["search"]
+        return redirec("UpdateUser")
     else:    
         return render_template("SearchUser.html")   
 
 @app.route("/NewProduct",methods=["GET","POST"])  
 def NewProduct():
     if request.method == "POST":
-        NewProductName = request.form[NewProductName]
-        NewQuantity = request.form[NewQuantity]
-        NewImage = request.form[NewImage]
+        NewProductName = request.form["NewProductName"]
+        NewQuantity = request.form["NewProductQuantity"]
+        NewImage = request.form["NewProductImage"]
+        return redirect("HomeAdmin")
     else:    
         return render_template("NewProduct.html")
 
 @app.route("/UpdateProduct",methods=["GET","POST"])
 def UpdateProduct():
     if request.method == "POST":
-        UpdateProductName = request.form[NewProductName]
-        UpdateQuantity = request.form[NewQuantity]
-        UpdateImage = request.form[NewImage]
+        UpdateProductName = request.form["NewProductName"]
+        UpdateQuantity = request.form["NewQuantity"]
+        UpdateImage = request.form["NewImage"]
     else:    
         return render_template("UpdateProduct.html")
 
 @app.route("/UpdateProductUser",methods=["GET","POST"])
 def UpdateProductUser():
     if request.method == "POST":
-        UpdateQuantity = request.form[NewQuantity]
+        UpdateQuantity = request.form["NewQuantity"]
     else:    
         return render_template("UpdateProductUser.html") 
 
 @app.route("/SearchProduct",methods=["GET","POST"])
 def SearchProduct():
     if request.method == "POST":
-        searchUser = request.form[search]
+        #searchUser = request.form["id"]
+        return redirect("UpdateProduct")
     else:    
         return render_template("SearchProduct.html")
 
 @app.route("/UpdateUser",methods=["GET","POST"])
 def UpdateUser():
     if request.method == "POST":
-        updateUserName = request.form[NewUserName]
-        updateUserUser = request.form[NewUserUser]
-        updateUserPassword = request.form[NewUserPassword]
-        updateUserMail = request.form[NewUserMail]
+        updateUserName = request.form["NewUserName"]
+        updateUserUser = request.form["NewUserUser"]
+        updateUserPassword = request.form["NewUserPassword"]
+        updateUserMail = request.form["NewUserMail"]
     else:    
         return render_template("UpdateUser.html")
 
