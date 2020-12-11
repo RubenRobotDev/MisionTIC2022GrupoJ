@@ -28,17 +28,11 @@ http://www.templatemo.com/tm-466-cafe-house
   </head>
   <body>
     <!-- Preloader -->
-    <div id="loader-wrapper">
-      <div id="loader"></div>
-      <div class="loader-section section-left"></div>
-      <div class="loader-section section-right"></div>
-    </div>
-    <!-- End Preloader -->
     <div class="tm-top-header">
       <div class="container">
         <div class="row">
           <div class="tm-top-header-inner">
-            <div class="tm-logo-container">
+            <div class "tm-logo-container">
               <img src="static/img/logo.png" alt="Logo" class="tm-site-logo">
               <h1 class="tm-site-name tm-handwriting-font">Cafe House</h1>
             </div>
@@ -47,8 +41,16 @@ http://www.templatemo.com/tm-466-cafe-house
             </div>
             <nav class="tm-nav">
               <ul>
-                <li><a href="Principal.html" class="active">Home</a></li>
-		<li><a href="login.html">Log out</a></li>
+		<li>
+		  <form action="http://localhost:5000/HomeAdmin" method="GET" name="HomeAdmin">
+		    <a class="active" onclick="document.HomeAdmin.submit();">Home</a>
+		  </form>
+		</li>
+		<li>
+		  <form action="http://localhost:5000" method="GET" name="logout">
+		    <a onclick="document.logout.submit();">Log out</a>
+		  </form>
+		</li>
               </ul>
             </nav>   
           </div>           
@@ -65,14 +67,16 @@ http://www.templatemo.com/tm-466-cafe-house
         </div>      
         <div class="container container-principal">
 	  <div class="row tm-welcome-content">
-	    <h2 class="gold-text tm-welcome-header-2" style="margin-top: 0px;">New product</h2>
-	    <p style="color: white;">Name:</p>
-	    <input>
-	    <p style="color: white;">Quantity:</p>
-	    <input>
-	    <p style="color: white;">image:</p>
-	    <input type="file" style="color: white;">
-            <a href="#main" class="tm-more-button tm-more-button-welcome">Add Product</a>      
+	    <form action="http://localhost:5000/NewProduct" method="POST" name="newProduct">
+	      <h2 class="gold-text tm-welcome-header-2" style="margin-top: 0px;">New product</h2>
+	      <p style="color: white;">Name:</p>
+	      <input name="NewProductName">
+	      <p style="color: white;">Quantity:</p>
+	      <input name="NewProductQuantity">
+	      <p style="color: white;">image:</p>
+	      <input type="file" style="color: white;" name="NewProductImage">
+              <a class="tm-more-button tm-more-button-welcome" onclick="document.newProduct.submit();">Add Product</a>      
+	    </form>
           </div>
         </div>
         <div class="container container-principal user">

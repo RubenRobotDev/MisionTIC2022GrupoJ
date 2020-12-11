@@ -38,7 +38,7 @@ http://www.templatemo.com/tm-466-cafe-house
       <div class="container">
         <div class="row">
           <div class="tm-top-header-inner">
-            <div class="tm-logo-container">
+            <div class "tm-logo-container">
               <img src="static/img/logo.png" alt="Logo" class="tm-site-logo">
               <h1 class="tm-site-name tm-handwriting-font">Cafe House</h1>
             </div>
@@ -47,8 +47,16 @@ http://www.templatemo.com/tm-466-cafe-house
             </div>
             <nav class="tm-nav">
               <ul>
-                <li><a href="Principal.html" class="active">Home</a></li>
-		<li><a href="login.html">Log out</a></li>
+		<li>
+		  <form action="http://localhost:5000/HomeAdmin" method="GET" name="HomeAdmin">
+		    <a class="active" onclick="document.HomeAdmin.submit();">Home</a>
+		  </form>
+		</li>
+		<li>
+		  <form action="http://localhost:5000" method="GET" name="logout">
+		    <a onclick="document.logout.submit();">Log out</a>
+		  </form>
+		</li>
               </ul>
             </nav>   
           </div>           
@@ -56,25 +64,30 @@ http://www.templatemo.com/tm-466-cafe-house
       </div>
     </div>
     <section class="tm-welcome-section">
-      <div class="columnas">
-	
+      <div class="columnas">	
         <div class="container container-principal">
-          <div class="row tm-welcome-content">
-	    <a href="#main"><i class="material-icons">add</i></a>
-            <a href="#main" class="tm-more-button tm-more-button-welcome">New Product</a>      
-          </div>
+	  <form action="http://localhost:5000/NewProduct" method="GET" name="newProduct">
+            <div class="row tm-welcome-content" onclick="document.newProduct.submit()">
+	      <a><i class="material-icons" onclick="document.newProduct.submit()">add</i></a>
+              <a class="tm-more-button tm-more-button-welcome" onclick="document.newProduct.submit()">New Product</a>      
+            </div>
+	  </form>
         </div>      
         <div class="container container-principal">
-	  <div class="row tm-welcome-content">
-	    <a href="#main"><i class="material-icons">search</i></a>
-            <a href="#main" class="tm-more-button tm-more-button-welcome">Search Product</a>      
-          </div>
+	  <form action="http://localhost:5000/SearchProduct" method="GET" name="searchProduct">
+	    <div class="row tm-welcome-content" onclick="document.searchProduct.submit()">
+	      <a><i class="material-icons">search</i></a>
+              <a class="tm-more-button tm-more-button-welcome">Search Product</a>      
+            </div>
+	  </form>
         </div>
         <div class="container container-principal">
-          <div class="row tm-welcome-content">
-	    <a href="#main"><i class="material-icons">settings</i></a>
-	    <a href="#main" class="tm-more-button tm-more-button-welcome"> Manage user</a>      
-          </div>
+	  <form action="http://localhost:5000/ManageUser" method="GET" name="manageUser">
+            <div class="row tm-welcome-content" onclick="document.manageUser.submit()">
+	      <a ><i class="material-icons">settings</i></a>
+	      <a class="tm-more-button tm-more-button-welcome"> Manage user</a>      
+            </div>
+	  </form>
         </div>      
       </div>
     </section>
