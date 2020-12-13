@@ -1,12 +1,15 @@
 from flask import Flask as fl
-from flask import render_template
+from flask import render_template, request
 import os
 
 
 app = fl(__name__)
 
-@app.route("/")
+@app.route("/",methods=['GET', 'POST'])   
 def hello():
+    if request.method=="POST":
+        user=request.form["user"]
+    print(user)
     return render_template("login.html")
 
 @app.route("/RecoverPassword")
