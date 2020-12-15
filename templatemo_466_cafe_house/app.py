@@ -1,9 +1,61 @@
-from flask import Flask as fl
-from flask import render_template, request, redirect, url_for
-import os
+#############################################################
+ #######
+ #login#
+ #######
+  #|#  
+  #|#  ########
+  #--->#inicio#
+  #|#  ########
+  #|#    #|#
+  #|#    #|#  ################
+  #|#    #--->#search product#
+  #|#    #|#  ################
+  #|#    #|#    #|#
+  #|#    #|#    #|#  ################
+  #|#    #|#    #--->#manage product#
+  #|#    #|#         ################
+  #|#    #|#
+  #|#    #|#  #############
+  #|#    #--->#new product#
+  #|#    #|#  #############
+  #|#    #|#
+  #|#    #|#  #############
+  #|#    #--->#manage user#
+  #|#         #############
+  #|#           #|#
+  #|#           #|#  #############
+  #|#           #--->#search user#
+  #|#           #|#  #############
+  #|#           #|#    #|#
+  #|#           #|#    #|#  ###########
+  #|#           #|#    #--->#edit user#
+  #|#           #|#         ###########
+  #|#           #|#
+  #|#           #|#  ##########
+  #|#           #--->#new user#
+  #|#                ##########
+  #|#
+  #|#  #########
+  #--->#recover#
+       #########
+##############################################################
 
+####################################################################
+### Importar las librerias necesarias para iniciar la aplicacion ###
+####################################################################
+
+from flask import Flask as fl                               
+from flask import render_template, request, redirect, url_for
+
+####################################################################
+###### Inicializacion del sistema para manejo de aplicaciones ######
+####################################################################
 
 app = fl(__name__)
+
+#############################################################
+########## Sistema base del login de la pagina web ##########
+#############################################################
 
 @app.route("/",methods=["GET","POST"])
 def hello():
@@ -13,6 +65,10 @@ def hello():
         return redirect(url_for("HomeAdmin"))
     else:
         return render_template("login.html")
+    
+####################################################################
+############ Sistema base para recuperar la contraseña #############
+####################################################################
 
 @app.route("/RecoverPassword",methods=["GET","POST"])
 def RecoverPassword():
@@ -22,12 +78,35 @@ def RecoverPassword():
     else:    
         return render_template("RecoverPassword.html")
 
+####################################################################
+############### Sistema de inicio como administrador ###############
+####################################################################
+
 @app.route("/HomeAdmin",methods=["GET","POST"])
 def HomeAdmin():
     if request.method == "POST":
         return render_template("HomeAdmin.html")
     else:    
         return render_template("HomeAdmin.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route("/HomeUser",methods=["GET","POST"])
 def HomeUser():
@@ -45,11 +124,13 @@ def ManageUser():
 
 @app.route("/NewUser",methods=["GET","POST"])
 def NewUser():
+    
     if request.method == "POST":
         newUserName = request.form["NewUserName"]
         newUserUser = request.form["NewUserUser"]
         newUserPassword = request.form["NewUserPassword"]
         newUserMail = request.form["NewUserMail"]
+        return "hola mundo"
     else:    
         return render_template("NewUser.html")
 
