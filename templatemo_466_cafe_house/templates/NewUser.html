@@ -65,16 +65,18 @@ http://www.templatemo.com/tm-466-cafe-house
         </div>      
         <div class="container container-principal">
 	  <div class="row tm-welcome-content">
-	    <h2 class="gold-text tm-welcome-header-2" style="margin-top: 0px;">New User</h2>
-	    <p style="color: white;">Name:</p>
-	    <input>
-	    <p style="color: white;">User:</p>
-	    <input>
-	    <p style="color: white;">Password:</p>
-	    <input>
-	    <p style="color: white;">Mail:</p>
-	    <input>
-            <a href="#main" class="tm-more-button tm-more-button-welcome">Add User</a>      
+	    <form action="http://localhost:5000/NewUser" method="POST" name="AddNewUser"></form>
+		    <h2 class="gold-text tm-welcome-header-2" style="margin-top: 0px;">New User</h2>
+		    <p style="color: white;">Name:</p>
+		    <input name="NewUserName">
+		    <p style="color: white;">User:</p>
+		    <input name="NewUserUser">
+		    <p style="color: white;">Password:</p>
+		    <input name="NewUserPassword">
+		    <p style="color: white;">Mail:</p>
+		    <input name="NewUserMail">
+	            <a onclick="document.AddNewUser.submit();" href="#main" class="tm-more-button tm-more-button-welcome">Add User</a>      
+	    </form>
           </div>
         </div>
         <div class="container container-principal user">
