@@ -46,12 +46,29 @@
 
 from flask import Flask as fl                               
 from flask import render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+import sqlite3
+import os
 
 ####################################################################
 ###### Inicializacion del sistema para manejo de aplicaciones ######
 ####################################################################
 
+dbdir = "sqlite:///" + os.path.abspath(os.getcwd()) + "/sql/databaseusuario.db"
+
 app = fl(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = dbdir
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db = SQLAlchemy(app)
+
+
+class Usuario(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(30))
+    usuario = db.Column(db.String(30), unique=True, nullable=False)
+    correoelectronico = db.Column(db.String(50), unique=True)
+    contraseña = db.Column(db.String(30), nullable=False)
+    
 
 #############################################################
 ########## Sistema base del login de la pagina web ##########
@@ -122,17 +139,29 @@ def ManageUser():
     else:    
         return render_template("ManageUser.html")
 
+#crear nuevo usuario
 @app.route("/NewUser",methods=["GET","POST"])
 def NewUser():
-    
     if request.method == "POST":
+        User=Usuario
         newUserName = request.form["NewUserName"]
         newUserUser = request.form["NewUserUser"]
         newUserPassword = request.form["NewUserPassword"]
         newUserMail = request.form["NewUserMail"]
-        return "hola mundo"
+
+        User.nombre = newUserName
+        User.usuario = newUserUser
+        User.contraseña = newUserPassword
+        User.correoelectronico = newUserMail
+
+        db.session.add(User)
+        db.session.commit()
+        
+        return "hecho"
+
     else:    
         return render_template("NewUser.html")
+
 
 @app.route("/SearchUser",methods=["GET","POST"])
 def SearchUser():
@@ -186,5 +215,8 @@ def UpdateUser():
     else:    
         return render_template("UpdateUser.html")
 
+        
+
 if __name__ == "__main__":
+    db.create_all()
     app.run(debug=True)
