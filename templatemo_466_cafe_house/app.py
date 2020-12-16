@@ -76,10 +76,12 @@ class Usuario(db.Model):
 
 @app.route("/",methods=["GET","POST"])
 def hello():
+    ### En el metodo post solicitamos la informacion sensible del usuario
     if request.method == "POST":
         user = request.form["user"]
         password = request.form["pass"]
         return redirect(url_for("HomeAdmin"))
+    ### En el metodo get mostramos unicamente la informacion de la web
     else:
         return render_template("login.html")
     
@@ -89,6 +91,7 @@ def hello():
 
 @app.route("/RecoverPassword",methods=["GET","POST"])
 def RecoverPassword():
+    ### Solicitamos por el metodo Post el correo elecrtronico para reestablecer la contraseña
     if request.method == "POST":
         mail = request.form["email"]
         return redirect(url_for("hello"))
@@ -96,41 +99,35 @@ def RecoverPassword():
         return render_template("RecoverPassword.html")
 
 ####################################################################
-############### Sistema de inicio como administrador ###############
+######################## Sistema de inicio #########################
 ####################################################################
 
-@app.route("/HomeAdmin",methods=["GET","POST"])
+@app.route("/HomeAdmin")
 def HomeAdmin():
-    if request.method == "POST":
-        return render_template("HomeAdmin.html")
-    else:    
-        return render_template("HomeAdmin.html")
+    return render_template("HomeAdmin.html")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@app.route("/HomeUser",methods=["GET","POST"])
+@app.route("/HomeUser")
 def HomeUser():
-    if request.method == "POST":
-        return render_template("HomeUser.html")
-    else:   
-        return render_template("HomeUser.html")
+    return render_template("HomeUser.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route("/ManageUser",methods=["GET","POST"])
 def ManageUser():
