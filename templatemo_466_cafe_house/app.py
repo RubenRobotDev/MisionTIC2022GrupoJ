@@ -69,6 +69,8 @@ def NewUser():
         newUserPassword = request.form["NewUserPassword"]
         newUserMail = request.form["NewUserMail"]
 
+        
+
         User.nombre = newUserName
         User.usuario = newUserUser
         User.contraseña = newUserPassword
@@ -76,7 +78,7 @@ def NewUser():
 
         db.session.add(User)
         db.session.commit()
-        
+
         return "hecho"
 
     else:    
