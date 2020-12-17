@@ -10,6 +10,8 @@ from werkzeug.security import generate_password_hash,check_password_hash
 import os
 
 dbdir = "sqlite:///" + os.path.abspath(os.getcwd()) + "/sql/databaseusuario.db"
+UPLOAD_FOLDER = os.path.abspath("./static/img/uploads/")
+
 
 app = fl(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = dbdir
@@ -29,8 +31,13 @@ class Usuario(db.Model):
 
 class Producto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nombreproducto = db.Column(db.String(30))
-    cantidad = db.Column(db.INT())
+    nombre = db.Column(db.String(30), unique=True)
+    cantidad = db.Column(db.Integer, nullable=False)
+    path = db.Column(db.String(100))
+
+class Roles(db.Model):
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id'), primary_key=True)
+    rol = db.Column(db.String(30))
 
     
 
@@ -71,7 +78,7 @@ def hello():
         if user_dataBase is None:
             error = 'Usuario o contraseña inválidos'
             print(error)
-            flash(error)
+            flash("Usuario o contraseña inválidos", "error")
             return render_template("login.html")
         else: 
             #compruebo la contraseña
@@ -84,7 +91,7 @@ def hello():
                 # crear un query y pasarlo como parámetro
                 query2 = 'SELECT * FROM Roles WHERE id_usuario = "' + id_usuario +'"'
                 tipo_usuario = db_Activa.execute(query2).fetchone()
-                #print(tipo_usuario[1])
+                print(tipo_usuario[1])
                 if tipo_usuario[1] == "Admin":
                     return redirect(url_for("HomeAdmin"))
                 else: 
@@ -142,7 +149,7 @@ def NewUser():
         hash_password = generate_password_hash(newUserPassword)
         newUserPassword = hash_password
 
-        User.nombre = newUserName
+        User.nombre = request.form["NewUserName"]
         User.usuario = newUserUser
         User.contraseña = newUserPassword
         User.correoelectronico = newUserMail
@@ -319,33 +326,91 @@ def UpdateUser2():
 @app.route("/NewProduct",methods=["GET","POST"])  
 def NewProduct():
     if request.method == "POST":
-        Product=Producto()
-        NewProductName = request.form["NewProductName"]
-        NewQuantity = request.form["NewProductQuantity"]
-        NewImage = request.form["NewProductImage"]
-        
-        Product.nombreproducto = NewProductName
-        Product.cantidad = NewQuantity
+        productodb=Producto()
+        productodb.nombre = request.form["NewProductName"]
+        productodb.cantidad = request.form["NewProductQuantity"]
+        f = request.files["NewProductImage"]
 
-        db.session.add(Product)
+        if productodb.nombre == "":
+            flash("Falta completar el nombre del producto", "error")
+            return redirect(url_for("NewProduct"))
+        if productodb.cantidad == "":
+            flash("Falta especificar la cantidad del producto", "error")
+            return redirect(url_for("NewProduct"))
+        if "NewProductImage" not in request.files:
+            flash("El formulario no tiene ningún archivo", "error")
+            return redirect(url_for("NewProduct"))
+        if f.filename == "":
+            flash("Ningún archivo seleccionado", "error")
+            return redirect(url_for("NewProduct"))
+
+        productodb.path = f.filename
+        f.save(os.path.join(UPLOAD_FOLDER, productodb.path))
+        db.session.add(productodb)
         db.session.commit()
 
-        flash("Product created")
-        return redirect("/NewProduct")
-        
+        flash("Su producto se ha agregado correctamente", "success")
+        return redirect(url_for("NewProduct"))
+    return render_template("NewProduct.html")
+
+@app.route("/SearchProduct",methods=["GET","POST"])
+def SearchProduct():
+    if request.method == "POST":
+        nombre = request.form["nombreproducto"]
+        producto = Producto.query.filter_by(nombre=nombre).first()
+        if producto is None:
+            flash("El producto no existe", "error")
+            return render_template("SearchProduct.html")
+        productoform=producto.nombre
+        imagen = "static/img/uploads/" + producto.path
+        return render_template("UpdateProduct.html", id=producto.id, productoform = productoform, cantidad=producto.cantidad, imagen=imagen)
     else:    
-        return render_template("NewProduct.html")
+        return render_template("SearchProduct.html")
 
 
 
 @app.route("/UpdateProduct",methods=["GET","POST"])
 def UpdateProduct():
     if request.method == "POST":
-        UpdateProductName = request.form["NewProductName"]
-        UpdateQuantity = request.form["NewQuantity"]
-        UpdateImage = request.form["NewImage"]
-    else:    
+        productodb=Producto()
+        #id = request.args.get("idproducto")
+        #nombre = request.args.get("nombreproducto")
+        #cantidad = request.args.get("cantidad")
+        id = request.form["idproducto"]
+        nombre = request.form["nombreproducto"]
+        cantidad = request.form["cantidad"]
+
+ 
+        f = request.files["imagenproducto"]
+        if f.filename == "":
+            producto = productodb.query.filter_by(id=id).update(dict(nombre=nombre, cantidad= cantidad))
+        else:
+            productodb.path = f.filename
+            f.save(os.path.join(UPLOAD_FOLDER, productodb.path))
+            producto = productodb.query.filter_by(id=id).update(dict(nombre=nombre, cantidad= cantidad, path=productodb.path))
+        db.session.commit()
+
+        flash("Su producto se ha actualizado correctamente", "success")
+        return redirect(url_for("SearchProduct"))
+        #return redirect(url_for("UpdateProduct", productoform = producto.nombre))
+        
+    else:
         return render_template("UpdateProduct.html")
+
+@app.route("/DeleteProduct",methods=["GET","POST"])
+def DeleteProduct():
+    if request.method == "POST":
+        productodb=Producto()
+        id = request.form["idproducto"]
+        productodb.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash("El producto se ha eliminado correctamente", "success")
+    else:
+        flash("El producto no se ha eliminó", "success")
+    return redirect(url_for("SearchProduct"))
+
+
+
 
 @app.route("/UpdateProductUser",methods=["GET","POST"])
 def UpdateProductUser():
@@ -354,13 +419,7 @@ def UpdateProductUser():
     else:    
         return render_template("UpdateProductUser.html") 
 
-@app.route("/SearchProduct",methods=["GET","POST"])
-def SearchProduct():
-    if request.method == "POST":
-        #searchUser = request.form["id"]
-        return redirect("UpdateProduct")
-    else:    
-        return render_template("SearchProduct.html")
+
 
 
 
@@ -390,4 +449,21 @@ def login_required(view):
 
 if __name__ == "__main__":
     db.create_all()
+
+    #Creación usuario administrador por defecto
+    User=Usuario()
+    rol = Roles()
+    administrator = User.query.filter_by(usuario='admin').first()
+    if administrator is None:
+        User.nombre = "Administrator"
+        User.usuario = "admin"
+        User.contraseña = generate_password_hash("Admin123")
+        User.correoelectronico = "atdiego@uninorte.edu.co"
+        db.session.add(User)
+        db.session.commit()
+        rol.id_usuario = 1
+        rol.rol = "Admin"
+        db.session.add(rol)
+        db.session.commit()
+
     app.run(debug=True)

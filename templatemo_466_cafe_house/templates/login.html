@@ -1,3 +1,4 @@
+{% from "_render_elements.html" import render_messages %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,6 +44,7 @@
 	    </a>
 	  </div>
 	</form>
+	{{ render_messages(messages) }}
 	  <div class="text-center p-t-12">
 	    <span class="txt1">
 	    </span>
