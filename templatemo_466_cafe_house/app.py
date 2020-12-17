@@ -126,7 +126,11 @@ def ManageUser():
 @app.route("/NewUser",methods=["GET","POST"])
 def NewUser():
     if request.method == "POST":
+<<<<<<< HEAD
         User = Usuario
+=======
+        User=Usuario()
+>>>>>>> eb1a1740ba2980f8e900f562fe87a88f375a6819
         newUserName = request.form["NewUserName"]
         newUserUser = request.form["NewUserUser"]
         newUserPassword = request.form["NewUserPassword"]
