@@ -20,7 +20,7 @@ app.secret_key = os.urandom(24)
 
 
 class Usuario(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombre = db.Column(db.String(30))
     usuario = db.Column(db.String(30), unique=True, nullable=False)
     correoelectronico = db.Column(db.String(50), unique=True)
@@ -139,6 +139,9 @@ def NewUser():
         newUserPassword = request.form["NewUserPassword"]
         newUserMail = request.form["NewUserMail"]
 
+        hash_password = generate_password_hash(newUserPassword)
+        newUserPassword = hash_password
+
         User.nombre = newUserName
         User.usuario = newUserUser
         User.contraseña = newUserPassword
@@ -146,6 +149,16 @@ def NewUser():
 
         db.session.add(User)
         db.session.commit()
+        close_db()
+
+    
+        db_Activa = get_db()
+        query = 'SELECT id FROM usuario WHERE usuario = "'+ str(newUserUser)+ '";'
+        usuario_creado = db_Activa.execute(query).fetchone()
+        id0 = usuario_creado[0]
+        query2 = 'INSERT INTO Roles (id_usuario,rol) VALUES ('+str(id0)+',"User");'
+        usuario_creado = db_Activa.execute(query2)
+        db_Activa.commit()
 
         return redirect("/NewUser")
 
@@ -198,9 +211,6 @@ def SearchUser():
     else:    
         return render_template("SearchUser.html")   
 
-<<<<<<< HEAD
-
-=======
 @app.route("/UpdateUser",methods=["GET","POST",])
 def UpdateUser():
 
@@ -305,7 +315,6 @@ def UpdateUser():
 @app.route("/UpdateUser",methods=["GET","POST"])
 def UpdateUser2():
     return render_template("SearchUser.html")
->>>>>>> 6626a52aadd213624bde1bb7e5df27349c025604
 
 @app.route("/NewProduct",methods=["GET","POST"])  
 def NewProduct():
@@ -321,8 +330,9 @@ def NewProduct():
         db.session.add(Product)
         db.session.commit()
 
+        flash("Product created")
         return redirect("/NewProduct")
-
+        
     else:    
         return render_template("NewProduct.html")
 
