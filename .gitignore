@@ -6,3 +6,5 @@ templatemo_466_cafe_house/env/
 */backup/
 */entornovirtual
 templatemo_466_cafe_house/__pycache__/*
+*.DS_Store
+*Cafe.jpg

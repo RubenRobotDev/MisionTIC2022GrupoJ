@@ -47,8 +47,8 @@ http://www.templatemo.com/tm-466-cafe-house
             </div>
             <nav class="tm-nav">
               <ul>
-                <li><a href="Principal.html" class="active">Home</a></li>
-		<li><a href="login.html">Log out</a></li>
+                <li><a href="/HomeAdmin" class="active">Home</a></li>
+		            <li><a href="/">Log out</a></li>
               </ul>
             </nav>   
           </div>           
@@ -61,13 +61,22 @@ http://www.templatemo.com/tm-466-cafe-house
         <div class="container container-principal">
           <div class="row tm-welcome-content">
             <h2 class="gold-text tm-welcome-header-2">Search user</h2>
-	    <input type="text">
-            <a href="#main" class="tm-more-button tm-more-button-welcome">Search</a>      
+	           
+            
+            <!--Nueva versión del formualrio para que sea un form-->
+            <form class="login100-form validate-form" action= "http://localhost:5000/SearchUser" method="POST" name="SearchUser">
+              <input class="input100" type="text" name="search" placeholder="search" >
+              <a class="tm-more-button tm-more-button-welcome" id="SearchUser" onclick="document.SearchUser.submit()" > 
+                Search
+              </a> 
+            </form>
+            <!--fin de la nueva versión del formulario-->
           </div>
         </div>      
         <div class="container" style="color:white;">
 	 <table class="styled-table">
-	    <thead>
+      <!--
+          <thead>
               <tr>
            	<th>ID</th>
             	<th>Name</th>
@@ -84,7 +93,8 @@ http://www.templatemo.com/tm-466-cafe-house
                 <td>nnn@xyz.com</td>
                 <td>****</td>
               </tr>
-    	    </tbody>
+          </tbody>
+        -->
 	  </table>
  
         </div>
