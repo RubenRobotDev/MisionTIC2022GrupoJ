@@ -47,8 +47,8 @@ http://www.templatemo.com/tm-466-cafe-house
             </div>
             <nav class="tm-nav">
               <ul>
-                <li><a href="Principal.html" class="active">Home</a></li>
-		<li><a href="login.html">Log out</a></li>
+                <li><a href="/HomeAdmin" class="active">Home</a></li>
+		<li><a href="/">Log out</a></li>
               </ul>
             </nav>   
           </div>           
@@ -56,7 +56,7 @@ http://www.templatemo.com/tm-466-cafe-house
       </div>
     </div>
     <section class="tm-welcome-section">
-      <form action="http://127.0.0.1/ManageUSer" method="POST">
+      <form action="http://127.0.0.1/ManageUser" method="POST">
       <div class="columnas-2">
         <div class="container container-principal">
           <div class="row tm-welcome-content">
@@ -65,9 +65,28 @@ http://www.templatemo.com/tm-466-cafe-house
           </div>
         </div>      
         <div class="container container-principal">
-	  <div class="row tm-welcome-content">
-	    <a href="#main"><i class="material-icons">search</i></a>
-            <a href="#main" class="tm-more-button tm-more-button-welcome">Search User</a>      
+	      <div class="row tm-welcome-content">
+	          
+               <a href="SearchUser"><i class="material-icons">search</i></a>
+             
+            
+              <a href="SearchUser" class="tm-more-button tm-more-button-welcome">Search User</a>    
+           
+
+            <!-- NUEVO JM para tener un boton que use un método post
+            
+            <form action="http://localhost:5000/SearchUser" method="GET" name="SearchUser">
+              
+                <a><i class="material-icons">search</i>  </a>
+                
+                <a class="tm-more-button tm-more-button-welcome"  id= "SearchUser" >  Search User1 </a>      
+              
+            </form>
+             NUEVO FIN  JM para tener un boton que use un método post
+            -->
+
+
+
           </div>
         </div>
         <div class="container container-principal">

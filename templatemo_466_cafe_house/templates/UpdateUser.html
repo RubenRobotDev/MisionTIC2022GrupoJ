@@ -47,8 +47,8 @@ http://www.templatemo.com/tm-466-cafe-house
             </div>
             <nav class="tm-nav">
               <ul>
-                <li><a href="Principal.html" class="active">Home</a></li>
-		<li><a href="login.html">Log out</a></li>
+                <li><a href="/HomeAdmin" class="active">Home</a></li>
+		<li><a href="/">Log out</a></li>
               </ul>
             </nav>   
           </div>           
@@ -59,23 +59,31 @@ http://www.templatemo.com/tm-466-cafe-house
       <div class="columnas">
         <div class="container container-principal user">
           <div class="row tm-welcome-content">
-	    <a href="#main"><i class="material-icons">add</i></a>
-            <a href="#main" class="tm-more-button tm-more-button-welcome">New Product</a>      
+	    <a href="/"><i class="material-icons">add</i></a>
+            <a href="/" class="tm-more-button tm-more-button-welcome">New Product</a>      
           </div>
         </div>      
         <div class="container container-principal">
 	  <div class="row tm-welcome-content" style="margin-top: 50px;">
 	    <h2 class="gold-text tm-welcome-header-2" style="margin-top: 0px;">Update User</h2>
-	    <p style="color: white;">Name:</p>
-	    <input>
-	    <p style="color: white;">User:</p>
-	    <input>
-	    <p style="color: white;">Password:</p>
-	    <input>
-	    <p style="color: white;">Mail:</p>
-	    <input>
-            <a href="#main" class="tm-more-button tm-more-button-welcome">Update User</a>      
-            <a href="#main" class="tm-more-button tm-more-button-welcome">Delete User</a>      
+        
+          
+          <form class="login100-form validate-form" action= "" method="POST" name="UpdateUser"> 
+            <p style="color: white;">Name:</p>
+            <input class="input100" type="text" name="NewUserName" placeholder="NewUserName">
+            <p style="color: white;">User:</p>
+            <input class="input100" type="text" name="NewUserUser" placeholder="NewUserUser">
+            <p style="color: white;">Password:</p>
+            <input class="input100" type="text" name="NewUserPassword" placeholder="NewUserPassword">
+            <p style="color: white;">Mail:</p>
+            <input class="input100" type="text" name="NewUserMail" placeholder="NewUserMail">
+            <input type = "submit" class="tm-more-button tm-more-button-welcome" id="UpdateUser" name = "boton" value= "Update" >
+          </form> 
+
+          <form class="login100-form validate-form" action= "" method="POST" name="DeleteUser">   
+            <input type = "submit" class="tm-more-button tm-more-button-welcome" id="DeleteUser" name = "boton" value = "Delete" >
+             
+          </form>      
           </div>
         </div>
         <div class="container container-principal user">
