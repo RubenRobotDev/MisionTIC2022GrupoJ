@@ -19,6 +19,13 @@ class Usuario(db.Model):
     usuario = db.Column(db.String(30), unique=True, nullable=False)
     correoelectronico = db.Column(db.String(50), unique=True)
     contraseña = db.Column(db.String(30), nullable=False)
+
+
+class Producto(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombreproducto = db.Column(db.String(30))
+    cantidad = db.Column(db.INT())
+
     
 
 @app.route("/",methods=["GET","POST"])
@@ -69,8 +76,6 @@ def NewUser():
         newUserPassword = request.form["NewUserPassword"]
         newUserMail = request.form["NewUserMail"]
 
-        
-
         User.nombre = newUserName
         User.usuario = newUserUser
         User.contraseña = newUserPassword
@@ -79,7 +84,7 @@ def NewUser():
         db.session.add(User)
         db.session.commit()
 
-        return "hecho"
+        return redirect("/NewUser")
 
     else:    
         return render_template("NewUser.html")
@@ -93,15 +98,28 @@ def SearchUser():
     else:    
         return render_template("SearchUser.html")   
 
+
+
 @app.route("/NewProduct",methods=["GET","POST"])  
 def NewProduct():
     if request.method == "POST":
+        Product=Producto()
         NewProductName = request.form["NewProductName"]
         NewQuantity = request.form["NewProductQuantity"]
         NewImage = request.form["NewProductImage"]
-        return redirect("HomeAdmin")
+        
+        Product.nombreproducto = NewProductName
+        Product.cantidad = NewQuantity
+
+        db.session.add(Product)
+        db.session.commit()
+
+        return redirect("/NewProduct")
+
     else:    
         return render_template("NewProduct.html")
+
+
 
 @app.route("/UpdateProduct",methods=["GET","POST"])
 def UpdateProduct():
