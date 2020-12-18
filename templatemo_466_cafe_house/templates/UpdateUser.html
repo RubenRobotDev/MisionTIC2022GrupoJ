@@ -17,20 +17,23 @@
 	    <h2 class="gold-text tm-welcome-header-2" style="margin-top: 0px;">Update User</h2>
         
           
-          <form class="login100-form validate-form" action= "" method="POST" name="UpdateUser"> 
-            <p style="color: white;">Name:</p>
-            <input class="input100" type="text" name="NewUserName" placeholder="NewUserName">
-            <p style="color: white;">User:</p>
-            <input class="input100" type="text" name="NewUserUser" placeholder="NewUserUser">
-            <p style="color: white;">Password:</p>
-            <input class="input100" type="password" name="NewUserPassword" placeholder="NewUserPassword">
-            <p style="color: white;">Mail:</p>
-            <input class="input100" type="email" name="NewUserMail" placeholder="NewUserMail">
+          <form class="login100-form validate-form"  action="{{ url_for('UpdateUser') }}" method="POST" name="UpdateUser"> 
+            <p style="color: white;">Current User:</p>
+            <input class="input100" type="text" name="CurrentUserName" placeholder= "{{ currentUser }}" value="{{ currentUser }}" readonly>
+            <p style="color: white;">New Name:</p>
+            <input class="input100" type="text" name="NewUserName" placeholder= "{{ nameFormulario }}" value="{{ currentName }}">
+            <p style="color: white;">New User:</p>
+            <input class="input100" type="text" name="NewUserUser" placeholder="NewUserUser" value="{{ currentUser }}">
+            <p style="color: white;">New Password:</p>
+            <input class="input100" type="password" name="NewUserPassword"  >
+            <p style="color: white;">New Mail:</p>
+            <input class="input100" type="email" name="NewUserMail" placeholder="NewUserMail" value="{{ currentMail }}">
             <input type = "submit" class="tm-more-button tm-more-button-welcome" id="UpdateUser" name = "boton" value= "Update" >
+            <input type = "submit" class="tm-more-button tm-more-button-welcome" id="DeleteUser" name = "boton" value = "Delete" >
           </form> 
 
-          <form class="login100-form validate-form" action= "" method="POST" name="DeleteUser">   
-            <input type = "submit" class="tm-more-button tm-more-button-welcome" id="DeleteUser" name = "boton" value = "Delete" >
+          <form class="login100-form validate-form" action="{{ url_for('UpdateUser') }}"  method="POST" name="DeleteUser">   
+            
              
           </form>      
           </div>

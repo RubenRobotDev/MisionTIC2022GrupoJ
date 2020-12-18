@@ -1,6 +1,7 @@
 from flask import Flask as fl
 from flask import render_template, request, redirect, url_for, session, g
 from flask import flash
+from flask_sqlalchemy import SQLAlchemy
 
 from flask_sqlalchemy import SQLAlchemy
 from db import close_db
@@ -42,6 +43,7 @@ class Producto(db.Model):
 class Roles(db.Model):
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id'), primary_key=True)
     rol = db.Column(db.String(30))
+
 class Log():
     log=False
     admin=False
@@ -68,13 +70,13 @@ def hello():
         #valido que si pusiera algo en cada uno de los campos. 
         if not user: 
             error = "El usuario es requerido"
-            flash(error)
+            flash(error,"success")
             print("no hay usuario")
             return render_template('login.html')
 
         if not password: 
             error = "La clave es requerida"
-            flash(error)
+            flash(error,"success")
             print("no hay clave")
             return render_template('login.html')
 
@@ -108,7 +110,7 @@ def hello():
             else: 
                 error = 'Usuario o contraseña inválidos v2'
                 print(error)
-                flash(error)
+                flash(error,"success")
                 return render_template("login.html")
     else: 
         log.log = False
@@ -212,15 +214,19 @@ def SearchUser():
     close_db()
     db_Activa = get_db()
     
+    
     if request.method == 'POST':
-        print('Entro a POST User method')
+        print('Entro a POST search User method')
         #search user tiene usuario que se busca
-        searchUser = request.form["search"]
+        try:
+            searchUser = request.form["search"]
+        except Exception as e:
+            print("el error es " + str(e))
 
         #valido que no esté vacio
         if not searchUser: 
             error = "El usuario es requerido"
-            flash(error)
+            flash(error,"success")
             print("no hay usuario")
             return render_template('SearchUser.html')
 
@@ -235,19 +241,27 @@ def SearchUser():
             #en caso que no lo encuentre aviso que no lo encontré y me quedo en la misma página 
             error = 'Usuario no existe'
             print(error)
-            flash(error)
+            flash(error,"success")
             return render_template('SearchUser.html')
         else: 
             #si lo encontré guardo su Id y me voy a la `página de editar`
+            #paso más parámetros para que se vean en la aplicación
+            print(user_dataBase[1])
+            namePresentar = str(user_dataBase[1])
+            userPresentar = str(user_dataBase[2])
+            passwordPresentar = str(user_dataBase[4])
+            mailPresentar = str(user_dataBase[3])
 
             #opción1
             #url_update_user = "UpdateUser/" + searchUser
             #return redirect(url_update_user)
 
             #opción2
-            return redirect(url_for('UpdateUser', usuario_buscar = searchUser))
+            return render_template('UpdateUser.html', currentUser = searchUser , currentName = namePresentar, currentMail = mailPresentar)
+            #return redirect(url_for('UpdateUser', usuario_buscar = searchUser, nameFormulario = namePresentar, userFormulario = userPresentar, passwordFormulario = passwordPresentar, mailFormulario = mailPresentar))
         
     else:    
+        print("Entro a search user como un get")
         return render_template("SearchUser.html")   
 
 @app.route("/UpdateUser",methods=["GET","POST",])
@@ -256,7 +270,7 @@ def UpdateUser():
         return redirect(url_for("hello"))
 
     print('Entro a update user method')
-    searchUser = request.args.get('usuario_buscar')
+    #searchUser = request.args.get('usuario_buscar')
     
     if request.method == 'POST':
         #si el valor del botón es update significa que dio click en actualizar
@@ -264,6 +278,7 @@ def UpdateUser():
             print("la comparación tomó el valor de update")
             #de entrar acá hay que editar el usuario
             print('Entro a update user method con método post')
+            searchUser = request.form["CurrentUserName"]
             updateUserName = request.form["NewUserName"]
             updateUserUser = request.form["NewUserUser"]
             updateUserPassword = request.form["NewUserPassword"]
@@ -275,25 +290,25 @@ def UpdateUser():
             #valido que no estén vacios los campos
             if not updateUserName: 
                 error = "El nombre es requerido"
-                flash(error)
+                flash(error,"success")
                 print("no hay nombre")
                 return redirect(url_for('UpdateUser', usuario_buscar = searchUser))
 
             if not updateUserUser: 
                 error = "El usuario es requerido"
-                flash(error)
+                flash(error,"success")
                 print("no hay usuario")
                 return redirect(url_for('UpdateUser', usuario_buscar = searchUser))
 
             if not updateUserPassword: 
                 error = "La contraseña es requerida"
-                flash(error)
+                flash(error,"success")
                 print("no hay contraseña")
                 return redirect(url_for('UpdateUser', usuario_buscar = searchUser))
 
             if not updateUserMail: 
                 error = "El mail es requerido"
-                flash(error)
+                flash(error,"success")
                 print("no hay mail")
                 return redirect(url_for('UpdateUser', usuario_buscar = searchUser)) 
 
@@ -307,9 +322,9 @@ def UpdateUser():
             db_Activa.commit()
             close_db()
 
-            flash('Usuario editado con éxito')
+            flash('Usuario editado con éxito',"success")
 
-            return redirect("/SearchUser")
+            return render_template("SearchUser.html")
 
         elif request.form['boton'] == 'Delete':
 
@@ -339,9 +354,9 @@ def UpdateUser():
             close_db()
 
             print("Eliminación exitosa")
-            flash("Eliminación exitosa")
+            flash("Eliminación exitosa","success")
 
-            return redirect("/SearchUser")
+            return render_template("SearchUser.html")
         else: 
             print('la comparación no sirvió de nada :)')
             return redirect("/")
@@ -349,8 +364,8 @@ def UpdateUser():
         
         
     else:
-        print('Entro a update user method con método get y parametro ' + searchUser)
-        return render_template("UpdateUser.html")
+        print('Entro a update user method con método get y parametro ')
+        return render_template("SearchUser.html")
     
 
 @app.route("/UpdateUser",methods=["GET","POST"])
