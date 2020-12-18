@@ -403,7 +403,13 @@ def SearchProduct():
             return render_template("SearchProduct.html")
         productoform=producto.nombre
         imagen = "static/img/uploads/" + producto.path
-        return render_template("UpdateProduct.html", id=producto.id, productoform = productoform, cantidad=producto.cantidad, imagen=imagen)
+        if log.admin:
+            print(log.admin)
+            return render_template("UpdateProduct.html", id=producto.id, productoform = productoform, cantidad=producto.cantidad, imagen=imagen)
+        else:
+            print(log.admin)
+            return render_template("UpdateProductUser.html", id=producto.id, productoform = productoform, cantidad=producto.cantidad, imagen=imagen)
+        
     else:    
         return render_template("SearchProduct.html")
 
@@ -461,9 +467,20 @@ def UpdateProductUser():
     if not log.log:
         return redirect(url_for("hello"))
     if request.method == "POST":
-        UpdateQuantity = request.form["NewQuantity"]
-    else:    
-        return render_template("UpdateProductUser.html") 
+        productodb=Producto()
+
+        id = request.form["idproducto"]
+        cantidad = request.form["cantidad"]
+
+        producto = productodb.query.filter_by(id=id).update(dict(cantidad= cantidad))
+        db.session.commit()
+
+        flash("La cantidad se ha actualizado correctamente", "success")
+        return redirect(url_for("SearchProduct"))
+        #return redirect(url_for("UpdateProduct", productoform = producto.nombre))
+        
+    else:
+        return render_template("UpdateProductUser.html")
 
 
 
